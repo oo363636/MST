@@ -7,4 +7,4 @@ Step 1: Get data for test:
 ) and unzip it.  
 Step 2: Run Boruvka.py to test, then the results will be saved in result.csv  
 Test Result (By MBP 2019): 
-![image](https://raw.githubusercontent.com/Excited-Frog/MST/master/result/balance.jpg)
+![image](https://raw.githubusercontent.com/Excited-Frog/MST/master/result.jpg)
