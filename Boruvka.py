@@ -90,25 +90,24 @@ def CheapestEdgesIter(parent, roots):
     return cheapestEdges
 
 # Test
-if __name__ == '__main__':
-    import findspark
-    findspark.add_packages("graphframes:graphframes:0.8.0-spark3.0-s_2.12")
-    findspark.init()
-    import pyspark
-    num_CPU = cpu_count(False)
-    graph_size, py, spark = [], [], [[] for i in range(num_CPU)]
-    sc = pyspark.SparkContext(appName = "Boruvka")
-    sc.addPyFile('graphframes-0.8.0-spark3.0-s_2.12.jar')
-    for size in range(100000, 1000001, 100000):
-        graph_size.append(size)
-        N, E = ReadGraph(str(size))
-        t, T = time(), Boruvka(N, E)
-        py.append(time() - t)
-        for num_partiton in range(1, 1 + num_CPU):
-            t, T = time(), BoruvkaSpark(N, E, sc, np = num_partiton)
-            spark[num_partiton - 1].append(time() - t)
-    sc.stop()
-    result = {'size': graph_size, 'Python': py}
-    for i in range(1, 1 + num_CPU):
-        result[i] = spark[i - 1]
-    pd.DataFrame(result).to_csv('result.csv')
+import findspark
+findspark.add_packages("graphframes:graphframes:0.8.0-spark3.0-s_2.12")
+findspark.init()
+import pyspark
+num_CPU = cpu_count(False)
+graph_size, py, spark = [], [], [[] for i in range(num_CPU)]
+sc = pyspark.SparkContext(appName = "Boruvka")
+sc.addPyFile('graphframes-0.8.0-spark3.0-s_2.12.jar')
+for size in range(100000, 1000001, 100000):
+    graph_size.append(size)
+    N, E = ReadGraph(str(size))
+    t, T = time(), Boruvka(N, E)
+    py.append(time() - t)
+    for num_partiton in range(1, 1 + num_CPU):
+        t, T = time(), BoruvkaSpark(N, E, sc, np = num_partiton)
+        spark[num_partiton - 1].append(time() - t)
+sc.stop()
+result = {'size': graph_size, 'Python': py}
+for i in range(1, 1 + num_CPU):
+    result[i] = spark[i - 1]
+pd.DataFrame(result).to_csv('result.csv')
