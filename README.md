@@ -6,4 +6,4 @@ Step 1: Get data for test:
 &nbsp;&nbsp;b. Download from [here](https://1drv.ms/u/s!Aq8XcGokRpkl_RaY8OO1qR49kesg?e=w1cdcj) and unzip it.  
 Step 2: Run Boruvka.py to test, then the results will be saved in result.csv  
 Test Result (By MBP 2019): 
-![image](https://raw.githubusercontent.com/Excited-Frog/MST/master/result.jpg)
+![image](https://raw.githubusercontent.com/xyw6/MST/master/result.jpg)
