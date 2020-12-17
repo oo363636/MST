@@ -91,7 +91,6 @@ def CheapestEdgesIter(parent, roots):
 
 # Test
 import findspark
-findspark.add_packages("graphframes:graphframes:0.8.0-spark3.0-s_2.12")
 findspark.init()
 import pyspark
 num_CPU = cpu_count(False)
