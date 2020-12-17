@@ -96,7 +96,6 @@ import pyspark
 num_CPU = cpu_count(False)
 graph_size, py, spark = [], [], [[] for i in range(num_CPU)]
 sc = pyspark.SparkContext(appName = "Boruvka")
-sc.addPyFile('graphframes-0.8.0-spark3.0-s_2.12.jar')
 for size in range(100000, 1000001, 100000):
     graph_size.append(size)
     N, E = ReadGraph(str(size))
